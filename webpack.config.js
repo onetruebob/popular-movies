@@ -14,5 +14,8 @@ module.exports = {
                 exclude: /node_modules/
             }
         ]
+    },
+    devServer: {
+        contentBase: path.resolve(__dirname, "dist")
     }
 };
