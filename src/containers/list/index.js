@@ -20,7 +20,7 @@ const mapDispatchToProps = dispatch =>
 const ConnectedList = ({ movies, moreMovies, loadMoreMovies }) => (
     <ul>
         <InfiniteScroll pageStart={1} loadMore={loadMoreMovies} hasMore={moreMovies}>
-            {movies.length ? movies.map(movie => <li key={movie.id}>{movie.title}</li>) : <li>No movies</li>}
+            {movies.length ? movies.map(movie => <div key={movie.id}><img src={movie.posterUrl} /></div>) : <div>No movies</div>}
         </InfiniteScroll>
     </ul>
 );
