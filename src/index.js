@@ -18,14 +18,7 @@ class Welcome extends React.Component {
     render() {
         return (
             <Provider store={store}>
-                <div>
-                    <div style={{ textAlign: 'center' }}>
-                        <h1>Welcome</h1>
-                        <p>Hello {stringUpper(this.state.name)}</p>
-                        <input onChange={this.handleChange} defaultValue={this.state.name} />
-                    </div>
-                    <App />
-                </div>
+                <App />
             </Provider>
         );
     }
