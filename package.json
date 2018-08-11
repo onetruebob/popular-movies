@@ -4,8 +4,13 @@
   "description": "An example front end application displating movie posters. Pulls data from https://www.themoviedb.org",
   "main": "index.js",
   "scripts": {
+    "start": "webpack",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "Bob Owen <bob@bobowen.org>",
-  "license": "ISC"
+  "license": "ISC",
+  "devDependencies": {
+    "webpack": "^4.16.5",
+    "webpack-cli": "^3.1.0"
+  }
 }
