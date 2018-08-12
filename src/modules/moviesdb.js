@@ -29,24 +29,28 @@ export default (state = initialState, action) => {
 };
 
 let posterBaseUrl = undefined;
+const timeoutDurationMs = 3000;
 
 export const loadMoreMovies = (page = 1) => dispatch => {
     dispatch({ type: LOAD_MORE_MOVIES });
 
     const posterUrlPromise = posterBaseUrl
         ? Promise.resolve(posterBaseUrl)
-        : axios({ method: 'GET', url: `${settings.moviesRootUrl}/configuration?api_key=${settings.moviesDbKey}` }).then(
-              ({ data: configuration }) => {
-                  const { base_url: baseUrl } = configuration.images;
-                  posterBaseUrl = baseUrl;
-                  return baseUrl;
-              }
-          );
+        : axios({
+              method: 'GET',
+              timeout: timeoutDurationMs,
+              url: `${settings.moviesRootUrl}/configuration?api_key=${settings.moviesDbKey}`
+          }).then(({ data: configuration }) => {
+              const { base_url: baseUrl } = configuration.images;
+              posterBaseUrl = baseUrl;
+              return baseUrl;
+          });
 
     posterUrlPromise
         .then(() =>
             axios({
                 method: 'GET',
+                timeout: timeoutDurationMs,
                 url: `${settings.moviesRootUrl}/discover/movie?api_key=${settings.moviesDbKey}&page=${page}`
             })
         )

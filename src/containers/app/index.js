@@ -11,9 +11,7 @@ class App extends Component {
         const { loading } = this.props;
         return (
             <div id="subApp">
-                <h2>Validating redux setup with thunks</h2>
-                {loading ? <h2>I'm loading them</h2> : ''}
-                <h3>Movies</h3>
+                <h2>Popular</h2>
                 <List />
             </div>
         );

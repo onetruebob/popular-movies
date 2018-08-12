@@ -2,6 +2,7 @@ import React from 'react';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 import InfiniteScroll from 'react-infinite-scroller';
+import Spinner from 'react-spinkit';
 import { loadMoreMovies } from '../../modules/moviesdb';
 import Movie from '../movie';
 
@@ -19,15 +20,15 @@ const mapDispatchToProps = dispatch =>
     );
 
 const ConnectedList = ({ movies, moreMovies, loadMoreMovies }) => (
-    <div>
-        <InfiniteScroll pageStart={1} loadMore={loadMoreMovies} hasMore={moreMovies} style={{ position: 'relative' }}>
-            {movies.length ? (
-                movies.map(movie => (
-                        <Movie movie={movie} key={movie.id} />
-                ))
-            ) : (
-                <div>No movies</div>
-            )}
+    <div className="fond" align="center">
+        <InfiniteScroll
+            pageStart={1}
+            loadMore={loadMoreMovies}
+            hasMore={moreMovies}
+            style={{ position: 'relative' }}
+            loader={<Spinner name="ball-pulse-sync" color="white" key={0} />}
+        >
+            {movies.map(movie => <Movie movie={movie} key={movie.id} />)}
         </InfiniteScroll>
     </div>
 );

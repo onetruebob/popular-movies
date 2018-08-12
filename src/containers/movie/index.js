@@ -1,10 +1,20 @@
 import React from 'react';
-import ReactHoverObserver from 'react-hover-observer';
+// import ReactHoverObserver from 'react-hover-observer';
 
 const Movie = ({ movie, isHovering }) => (
-    <ReactHoverObserver key={movie.id} className="outer-movie-container">
-        {({ isHovering }) => <img src={movie.posterUrl} width="196"/>}
-    </ReactHoverObserver>
+    <div key={movie.id} className="outer-movie-container">
+        <div
+            style={{
+                backgroundImage: `url(${movie.posterUrl})`,
+                backgroundSize: '100%',
+                width: '196px',
+                height: '294px',
+                display: 'flex'
+            }}
+        >
+            <div className="title-background">{movie.title}</div>
+        </div>
+    </div>
 );
 
 export default Movie;
