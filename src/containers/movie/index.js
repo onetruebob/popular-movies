@@ -1,6 +1,6 @@
 import React from 'react';
 
-const Movie = ({ movie, isHovering }) => (
+const Movie = ({ movie }) => (
     <div key={movie.id} className="outer-movie-container">
         <div
             style={{
