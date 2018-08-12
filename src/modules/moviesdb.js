@@ -46,7 +46,7 @@ export const loadMoreMovies = (page = 1) => dispatch => {
               return baseUrl;
           });
 
-    posterUrlPromise
+    return posterUrlPromise
         .then(() =>
             axios({
                 method: 'GET',
