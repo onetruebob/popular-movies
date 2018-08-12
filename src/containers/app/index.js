@@ -11,7 +11,7 @@ class App extends Component {
         const { loading } = this.props;
         return (
             <div id="subApp">
-                <h2>Popular</h2>
+                <h2 className="splash-title">Popular</h2>
                 <List />
             </div>
         );
