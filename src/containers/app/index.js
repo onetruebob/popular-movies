@@ -1,16 +1,27 @@
 import React, { Component } from 'react';
+import Notifications, {notify} from 'react-notify-toast';
 import List from '../list';
 import { connect } from 'react-redux';
 
 const mapStateToProps = state => ({
-    loading: state.moviesState.loadingMovies || false
+    loadingFailed: state.moviesState.loadingFailed || false
 });
 
 class App extends Component {
+    componentDidUpdate() {
+        const { loadingFailed } = this.props;
+        const notifyDurationMs = 10000;
+
+        if(loadingFailed) {
+            notify.show('Could not load data from moviesdb!', 'error', notifyDurationMs);
+        }
+    }
+
     render() {
-        const { loading } = this.props;
+
         return (
             <div id="subApp">
+                <Notifications />
                 <h2 className="splash-title">Popular</h2>
                 <List />
             </div>
