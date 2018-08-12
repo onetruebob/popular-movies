@@ -3,6 +3,7 @@ import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 import InfiniteScroll from 'react-infinite-scroller';
 import { loadMoreMovies } from '../../modules/moviesdb';
+import Movie from '../movie';
 
 const mapStateToProps = state => ({
     movies: state.moviesState.movies || [],
@@ -18,11 +19,17 @@ const mapDispatchToProps = dispatch =>
     );
 
 const ConnectedList = ({ movies, moreMovies, loadMoreMovies }) => (
-    <ul>
-        <InfiniteScroll pageStart={1} loadMore={loadMoreMovies} hasMore={moreMovies}>
-            {movies.length ? movies.map(movie => <div key={movie.id}><img src={movie.posterUrl} /></div>) : <div>No movies</div>}
+    <div>
+        <InfiniteScroll pageStart={1} loadMore={loadMoreMovies} hasMore={moreMovies} style={{ position: 'relative' }}>
+            {movies.length ? (
+                movies.map(movie => (
+                        <Movie movie={movie} key={movie.id} />
+                ))
+            ) : (
+                <div>No movies</div>
+            )}
         </InfiniteScroll>
-    </ul>
+    </div>
 );
 
 const List = connect(mapStateToProps, mapDispatchToProps)(ConnectedList);
